@@ -65,6 +65,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     # "django.middleware.http.ConditionalGetMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # Cookie-based, for anonymous users
@@ -101,6 +102,7 @@ INSTALLED_APPS = [
     # "south",
     # "storages",
     "oauth2_provider",
+    "corsheaders",
     # Project apps
     "c_base_oauth2.apps.c_base_auth.apps.CBaseAuthConfig",
     "c_base_oauth2.apps.users.apps.UsersConfig",
@@ -108,7 +110,8 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = "users.User"
 
-LOGIN_URL='/admin/login/'
+LOGIN_URL = '/oauth/accounts/login/'
+LOGIN_REDIRECT_URL = '/oauth/user/profile/'
 
 WSGI_APPLICATION = "wsgi.application"
 
@@ -123,5 +126,19 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Common app-specific settings
+CORS_ORIGIN_ALLOW_ALL = True   # TODO: Correct this
+
+OAUTH2_PROVIDER = {
+    'SCOPES': {
+        'membership': 'See you membership status and your crew name.',
+        'groups': 'See if your LDAP groups (e.g. "soundlab", "c-lab", "cey").',
+        'email': 'See your e-mail address (e.g. {crew-name}@c-base.org).',
+        'realname': 'See your real name (CN).',
+    },
+    # These are the scopes used when the request comes
+    # from a user directly accessing a protected resource
+    # instead of a third-party service.
+    'DEFAULT_SCOPES': ['__all__'],
+}
 
 from .common.logs import LOGGING   # noqa: F401, E402
