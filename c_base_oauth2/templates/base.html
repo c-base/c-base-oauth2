@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>title</title>
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
     <style>
         body {
             padding-top: 40px;
@@ -29,6 +31,9 @@
     {% block extra_css %}{% endblock extra_css %}
   </head>
   <body>
+    <div class="container text-center mb-4">
+      <img  src="{% static 'c-base-logo.png' %}" style="width: 32%;">
+    </div>
     <!-- begin page content -->
     {% block content %}{% endblock content %}
     <!-- end page content -->

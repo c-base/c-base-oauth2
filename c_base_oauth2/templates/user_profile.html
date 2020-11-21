@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="block-center">
+
+
+    <h1>User Profile</h1>
+
+    <p>
+        Username: {{ request.user.username }}<br />
+        E-Mail: {{ request.user.email }}
+    </p>
+
+    <p>
+        <a href="{% url 'logout' %}" class="btn btn-outline-primary">Logout again</a>
+    </p>
+
+    <h2>Authorized tokens</h2>
+    <p>
+      Here you can show a list of currently active token and you can also revoke your tokens!<br />
+      <a href="{% url 'oauth2_provider:authorized-token-list' %}">Show authorized tokens</a>
+    </p>
+
+    <h2>Your apps</h2>
+    <p>
+        For DEVELOPERS only! You only need this if you want to develop your own service that
+        uses the c-base OAuth2 service.<br />
+        <a href="{% url 'oauth2_provider:list' %}">Show your apps</a>
+    </p>
+
+    {# Assumes you setup the password_reset view in your URLconf #}
+    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+    {% endblock %}
+  </div>
+</div>

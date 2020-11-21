@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <div class="block-center mt-3 text-center">
+      <h2>You logged out</h2>
+      <p>
+        You have been logged out from the c-base
+        OAUTH2 service.
+      </p>
+      <p>
+        <a href="{% url 'login' %}" class="w-100 btn btn-primary">Login again</a>
+      </p>
+  </div>
+</div>
+{% endblock %}

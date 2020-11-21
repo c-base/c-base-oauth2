@@ -12,6 +12,7 @@ psycopg2-binary = "^2.8.6"
 environ = "^1.0"
 django-environ = "^0.4.5"
 django-cors-middleware = "^1.5.0"
+django-auth-ldap = "^2.2.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.2"
