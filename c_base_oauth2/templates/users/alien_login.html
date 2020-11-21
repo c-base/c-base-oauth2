@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="container">
-  <div class="block-center mt-3 text-center">
+  <div class="block-center mt-3 text-center" style="box-shadow: 0px 0px 32px 0px rgba(0,255,60,1);">
     
 
     {% if form.errors %}
@@ -18,7 +18,8 @@
         {% endif %}
     {% endif %}
 
-    <h2>Login with your c-base LDAP account</h2>
+    <h2><img style="width: 48px;"
+           src="{% static 'alien.svg' %}"><br />Login for ALIEN accounts (guest account)</h2>
 
     <form class="mt-4" method="post" action="{% url 'login' %}">
       {% csrf_token %}
@@ -39,15 +40,14 @@
                placeholder="password">
       </div>
 
-      <input type="submit" class="w-100 btn btn-large btn-primary" value="login">
+      <input type="submit" class="w-100 btn btn-large btn-success" value="login">
       <input type="hidden" name="next" value="{{ next }}">
     </form>
 
-    <h4 class="mt-5">Not a c-base member?</h4>
-    <a href="{% url 'alien_login' %}?next={{ next|urlencode }}" 
+    <h4 class="mt-5">Are you a c-base member?</h4>
+    <a href="{% url 'login' %}?next={{ next }}" 
        class="w-100 btn btn-large btn-outline-secondary">
-      <img style="width: 48px;"
-           src="{% static 'alien.svg' %}">&nbsp;Login with your ALIEN account
+      Login with your c-base LDAP account
     </a>
 
     <p class="mt-5">

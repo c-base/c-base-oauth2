@@ -5,8 +5,12 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseForbidden
 from django.urls import reverse
+from django.contrib.auth import login as auth_login
+from django.contrib.auth.views import LoginView
 from oauth2_provider.views import ScopedProtectedResourceView
 from oauth2_provider.views import AuthorizationView
+
+from .forms import AlienAuthenticationForm
 
 
 class UserProfileView(ScopedProtectedResourceView):
@@ -71,3 +75,8 @@ class CustomAuthorizationView(AuthorizationView):
             return HttpResponseRedirect(url)
         # call regular /oauth/authorize
         return super().get(request, *args, **kwargs)
+
+
+class AlienLoginView(LoginView):
+    template_name = 'users/alien_login.html'
+    form_class = AlienAuthenticationForm

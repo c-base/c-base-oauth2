@@ -19,12 +19,14 @@ from django.urls import include
 from django.views.generic import TemplateView
 from .apps.users.views import UserProfileView
 from .apps.users.views import CustomAuthorizationView
+from .apps.users.views import AlienLoginView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('oauth/user/profile/', UserProfileView.as_view(), name='user_profile_api'),
     path('oauth/accounts/profile/', TemplateView.as_view(template_name='user_profile.html'), name='user_profile'),
+    path('oauth/accounts/alien_login/', AlienLoginView.as_view(), name="alien_login"),
     path('oauth/accounts/', include('django.contrib.auth.urls')),
     path('oauth/authorize/', CustomAuthorizationView.as_view(), name="custom_authorize"),
     path('oauth/', include('oauth2_provider.urls',
