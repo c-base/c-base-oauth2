@@ -65,7 +65,11 @@ class UserProfileView(ScopedProtectedResourceView):
 
 class CustomAuthorizationView(AuthorizationView):
     """
-    TODO: Blasasel
+    The AuthorizationView of django-oauth-toolkit does not work when
+    the the `scope` parameter is empty. With some OAuth2 clients it
+    is hard to change the `scope` parameter. We therefor use this
+    shim view to do a redirect that adds default scopes when there is
+    no `scope` given in the request to /oauth/authorize/.
     """
     def get(self, request, *args, **kwargs):
         if request.GET.get('scope', '') == '':
@@ -79,4 +83,5 @@ class CustomAuthorizationView(AuthorizationView):
 
 class AlienLoginView(LoginView):
     template_name = 'users/alien_login.html'
+    # Same as Django's AuthenticationForm but also checks if your 
     form_class = AlienAuthenticationForm
