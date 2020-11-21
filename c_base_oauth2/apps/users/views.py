@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseForbidden
 from django.urls import reverse
-from django.contrib.auth import login as auth_login
 from django.contrib.auth.views import LoginView
 from oauth2_provider.views import ScopedProtectedResourceView
 from oauth2_provider.views import AuthorizationView
@@ -83,5 +82,6 @@ class CustomAuthorizationView(AuthorizationView):
 
 class AlienLoginView(LoginView):
     template_name = 'users/alien_login.html'
-    # Same as Django's AuthenticationForm but also checks if your 
+    # Same as Django's AuthenticationForm but also checks if your ALIEN account
+    # is still valid.
     form_class = AlienAuthenticationForm
