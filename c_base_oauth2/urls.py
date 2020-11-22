@@ -23,7 +23,7 @@ from .apps.users.views import AlienLoginView
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('oauth/admin/', admin.site.urls),
     path('oauth/user/profile/', UserProfileView.as_view(), name='user_profile_api'),
     path('oauth/accounts/profile/', TemplateView.as_view(template_name='user_profile.html'), name='user_profile'),
     path('oauth/accounts/alien_login/', AlienLoginView.as_view(), name="alien_login"),
