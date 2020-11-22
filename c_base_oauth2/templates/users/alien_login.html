@@ -45,7 +45,7 @@
     </form>
 
     <h4 class="mt-5">Are you a c-base member?</h4>
-    <a href="{% url 'login' %}?next={{ next }}" 
+    <a href="{% url 'login' %}{% if next %}?next={{ next|urlencode }}{% endif %}" 
        class="w-100 btn btn-large btn-outline-secondary">
       Login with your c-base LDAP account
     </a>

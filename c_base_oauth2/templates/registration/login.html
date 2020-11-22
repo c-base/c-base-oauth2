@@ -59,7 +59,7 @@
     </form>
 
     <h4 class="mt-5">Not a c-base member?</h4>
-    <a href="{% url 'alien_login' %}?next={{ next|urlencode }}" id="alien-btn"
+    <a href="{% url 'alien_login' %}{% if next %}?next={{ next|urlencode }}{% endif %}" id="alien-btn"
        class="w-100 btn btn-large btn-outline-secondary">
       <img style="width: 48px;"
            src="{% static 'alien.svg' %}">&nbsp;Login with your ALIEN account
