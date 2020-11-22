@@ -4,16 +4,18 @@ Description=c-base OAuth2 service
 After=network.target
 
 [Service]
-Type=notify
+# Type=notify
+Type=simple
 # the specific user that our service will run as
 User=oauth
 Group=oauth
+Environment=DJANGO_SECRET_KEY="CHANGEME"
+Environment=DJANGO_SETTINGS_MODULE="c_base_oauth2.conf.prod"
 # another option for an even more restricted service is
 # DynamicUser=yes
 # see http://0pointer.net/blog/dynamic-users-with-systemd.html
-RuntimeDirectory=gunicorn
 WorkingDirectory=/home/oauth/c-base-oauth2/
-ExecStart=poetry run gunicorn wsgi
+ExecStart=/home/oauth/c-base-oauth2/run_gunicorn.sh
 ExecReload=/bin/kill -s HUP $MAINPID
 KillMode=mixed
 TimeoutStopSec=5

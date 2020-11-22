@@ -66,6 +66,7 @@ TEMPLATES = [
 # import oauth2_provider.middleware.OAuth2TokenMiddleware
 # import django.contrib.auth.middleware.AuthenticationMiddleware
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -84,6 +85,7 @@ MIDDLEWARE = [
 
 INSTALLED_APPS = [
     # Django apps
+    "whitenoise",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.humanize",

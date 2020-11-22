@@ -8,12 +8,21 @@ TEMPLATE_DEBUG = False
 SECRET_KEY = get_env_setting("DJANGO_SECRET_KEY")
 
 ADMINS = [
-    # ('Your Name', 'your_email@example.com'),
+    ('Uwe Kamper', 'uk@c-base.org'),
 ]
 
+ALLOWED_HOSTS = ['c-base.org', '127.0.0.1']
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
+    }
+}
+
 # Configure site name and domain
-DOMAIN_NAME = "{{ project_name }}.example.net"
-SITE_NAME = "{{ project_name|title }}"
+DOMAIN_NAME = "c-base.org"
+SITE_NAME = "c-base.org"
 
 DEFAULT_FROM_EMAIL = "{} <hey@{}>".format(SITE_NAME, DOMAIN_NAME)
 SERVER_EMAIL = "server@{}".format(DOMAIN_NAME)
@@ -24,28 +33,15 @@ EMAIL_SUBJECT_PREFIX = "[{}]".format(SITE_NAME)
 # CACHES = herokuify.get_cache_config()
 
 # Setup storage for static files and media using S3 Boto backend
-DEFAULT_FILE_STORAGE = "herokuify.storage.S3MediaStorage"
-STATICFILES_STORAGE = "herokuify.storage.CachedS3StaticStorage"
-COMPRESS_STORAGE = "herokuify.storage.CachedS3StaticStorage"
+# DEFAULT_FILE_STORAGE = "herokuify.storage.S3MediaStorage"
+# STATICFILES_STORAGE = "herokuify.storage.CachedS3StaticStorage"
+# COMPRESS_STORAGE = "herokuify.storage.CachedS3StaticStorage"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_URL = '/oauth/static/'
+STATIC_ROOT = '/home/oauth/c-base-oauth2/static_files/'
 
 # MEDIA_URL = "https://{0}.s3.amazonaws.com/media/".format(AWS_STORAGE_BUCKET_NAME)
 # STATIC_URL = "https://{0}.s3.amazonaws.com/static/".format(AWS_STORAGE_BUCKET_NAME)
 
-# Compress assets during deployment
-COMPRESS_OFFLINE = True
-
-# Enable caching for templates
-TEMPLATE_LOADERS = [
-    ("django.template.loaders.cached.Loader", TEMPLATE_LOADERS),
-]
-
-# Enable postgres connection pool
-DATABASES['default']['ENGINE'] = 'django_postgrespool'
-DATABASE_POOL_ARGS = {
-    'max_overflow': 10,
-    'pool_size': 10,
-    'recycle': 300
-}
-SOUTH_DATABASE_ADAPTERS = {
-    'default': 'south.db.postgresql_psycopg2'
-}
+AUTH_LDAP_SERVER_URI = "ldap://meridian.c-base.org/"
+AUTH_LDAP_START_TLS = True
