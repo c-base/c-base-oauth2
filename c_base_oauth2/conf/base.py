@@ -1,4 +1,5 @@
 from . import rel   # , get_env_setting
+import os
 import ldap
 from django_auth_ldap.config import LDAPSearch, MemberDNGroupType
 
@@ -178,7 +179,12 @@ AUTH_LDAP_USER_ATTR_MAP = {
 CORS_ORIGIN_ALLOW_ALL = True   # TODO: Correct this
 
 OAUTH2_PROVIDER = {
+    "OIDC_ENABLED": True,
+    "OIDC_RSA_PRIVATE_KEY": os.environ.get("OIDC_RSA_PRIVATE_KEY"),
     'SCOPES': {
+        # Scope needed for OIDC
+        'openid': 'Use OpenID Connect.',
+        # My scopes
         'membership': 'See you membership status and your crew name.',
         'email': 'See your e-mail address (e.g. {crew-name}@c-base.org).',
         'groups': 'See if your LDAP groups (e.g. "soundlab", "c-lab", "cey").',

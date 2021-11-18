@@ -45,3 +45,7 @@ STATIC_ROOT = '/home/oauth/c-base-oauth2/static_files/'
 
 AUTH_LDAP_SERVER_URI = "ldap://meridian.c-base.org/"
 AUTH_LDAP_START_TLS = True
+
+# OIDC_ISS_ENDPOINT = "https://c-base.org/oauth"
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
