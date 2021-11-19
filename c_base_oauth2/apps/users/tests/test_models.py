@@ -9,6 +9,7 @@ def test_user_create():
         username="test",
         email="test@example.org",
         real_name="",
+        uid=1234,
         is_temporary_alien=False
     )
     assert get_user_model().objects.count() == 1
@@ -20,6 +21,7 @@ def test_user_str():
         username="xenomorph",
         email="test@example.org",
         is_temporary_alien=True,
+        uid=None,
         valid_until=timezone.now()
     )
     assert str(alien) == 'xenomorph [ALIEN]'
