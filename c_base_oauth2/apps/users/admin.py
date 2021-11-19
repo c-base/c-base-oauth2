@@ -8,6 +8,7 @@ from .models import User
 class UserAdmin(BaseUserAdmin):
     """Define a new User admin"""
     fieldsets = BaseUserAdmin.fieldsets\
+        + ((_('LDAP account'), {'fields': ('uid', )}), )\
         + ((_('Alien account'), {'fields': ('is_temporary_alien', 'valid_until')}), )
 
 
