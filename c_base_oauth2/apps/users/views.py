@@ -45,8 +45,10 @@ class UserProfileView(ScopedProtectedResourceView):
         data = {
             "username": request.user.username,
             "display_name": request.user.username,
-            'email': request.user.email
+            'email': request.user.email,
+            'uid_number': request.user.uid,   # May be null
         }
+        
         if self.has_scope(request, 'email'):
             data['email'] = request.user.email
 
