@@ -182,6 +182,8 @@ CORS_ORIGIN_ALLOW_ALL = True   # TODO: Correct this
 OAUTH2_PROVIDER = {
     "OIDC_ENABLED": True,
     "OIDC_RSA_PRIVATE_KEY": os.environ.get("OIDC_RSA_PRIVATE_KEY"),
+    # For custom OIDC claims
+    "OAUTH2_VALIDATOR_CLASS": "c_base_oauth2.oauth_validators.CustomOAuth2Validator",
     'SCOPES': {
         # Scope needed for OIDC
         'openid': 'Use OpenID Connect.',
