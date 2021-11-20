@@ -3,13 +3,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>title</title>
+    <title>{% block title %}OAuth 2{% endblock title %} - login with c-base</title>
     <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
     <style>
         body {
             padding-top: 40px;
             padding-bottom: 40px;
             background-color: #111111;
+        }
+        body p {
+          color: #eee;
+        }
+        .block-center p {
+          color: #212529;
         }
         .block-center {
             max-width: 500px;
@@ -32,11 +38,18 @@
   </head>
   <body>
     <div class="container text-center mb-4">
-      <img  src="{% static 'c-base-logo.png' %}" style="width: 32%;">
+      <a href="{% url 'user_profile' %}"><img  src="{% static 'c-base-logo.png' %}" style="width: 32%;"></a>
     </div>
     <!-- begin page content -->
     {% block content %}{% endblock content %}
     <!-- end page content -->
+
+    <p class="mt-3 text-center">
+      <small>
+        c-base e.V. | Rungestraße 20 | 10179 Berlin<br />
+        <a href="https://www.c-base.org/impressum/">Impressum</a>
+      </small>
+    </p>
   </body>
 </html>
 

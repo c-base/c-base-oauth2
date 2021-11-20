@@ -1,18 +1,20 @@
 import json
 from urllib.parse import urlencode
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseForbidden
 from django.urls import reverse
 from django.contrib.auth.views import LoginView
+from django.views.generic.base import TemplateView
 from oauth2_provider.views import ScopedProtectedResourceView
 from oauth2_provider.views import AuthorizationView
 
 from .forms import AlienAuthenticationForm
 
 
-class UserProfileView(ScopedProtectedResourceView):
+class UserProfileAPIView(ScopedProtectedResourceView):
     """
     View that returns a user profile JSON object.
     The contents of the JSON depend on the scopes requested by the OAuth2
@@ -62,6 +64,10 @@ class UserProfileView(ScopedProtectedResourceView):
             json.dumps(data, indent=2),
             content_type="application/json"
         )
+
+
+class UserProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'user_profile.html'
 
 
 class CustomAuthorizationView(AuthorizationView):
