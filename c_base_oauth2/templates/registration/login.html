@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}Account login{% endblock title %}
+
 {% block extra_css %}
 <style>
   #alien-btn img {
@@ -65,15 +67,6 @@
            src="{% static 'alien.svg' %}">&nbsp;Login with your ALIEN account
     </a>
 
-    <p class="mt-5">
-      <small>
-        c-base e.V. | Rungestraße 20 | 10179 Berlin<br />
-        <a href="https://www.c-base.org/cv50f/core/impressum.html">Impressum</a>
-      </small>
-    </p>
-    {# Assumes you setup the password_reset view in your URLconf #}
-    <p><!--<a href="https://member.c">Lost password?</a>--></p>
-
-    {% endblock %}
   </div>
 </div>
+{% endblock %}

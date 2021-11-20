@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block title %}Login for ALIENS{% endblock title %}
+
 {% block content %}
 <div class="container">
   <div class="block-center mt-3 text-center" style="box-shadow: 0px 0px 32px 0px #63c84d;">
@@ -44,21 +47,16 @@
       <input type="hidden" name="next" value="{{ next }}">
     </form>
 
+    {# Assumes you setup the password_reset view in your URLconf #}
+    <p class="mt-3"><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
     <h4 class="mt-5">Are you a c-base member?</h4>
     <a href="{% url 'login' %}{% if next %}?next={{ next|urlencode }}{% endif %}" 
        class="w-100 btn btn-large btn-outline-secondary">
       Login with your c-base LDAP account
     </a>
 
-    <p class="mt-5">
-      <small>
-        c-base e.V. | Rungestraße 20 | 10179 Berlin<br />
-        <a href="https://www.c-base.org/cv50f/core/impressum.html">Impressum</a>
-      </small>
-    </p>
-    {# Assumes you setup the password_reset view in your URLconf #}
-    <p><!--<a href="https://member.c">Lost password?</a>--></p>
-
-    {% endblock %}
+    
   </div>
 </div>
+{% endblock %}

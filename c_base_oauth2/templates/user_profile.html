@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}User profile{% endblock title %}
+
 {% block content %}
 <div class="container">
   <div class="block-center">
@@ -7,18 +9,23 @@
 
     <h1>User Profile</h1>
 
-    <p>
-        Username: {{ request.user.username }}<br />
-        E-Mail: {{ request.user.email }}
+    <p>You are logged in as:
+      <ul>
+        <li>Username: {{ request.user.username }}</li>
+        <li>E-Mail: {{ request.user.email }}</li>
+        {% if request.user.is_temporary_alien %}<li>This is a temporary ALIEN account valid until: {{ request.user.valid_until }}</li>{% endif %}
+      </ul>
     </p>
 
     <p>
         <a href="{% url 'logout' %}" class="btn btn-outline-primary">Logout again</a>
+        {# Assumes you setup the password_reset view in your URLconf #}
+        {% if request.user.is_temporary_alien %}<a class="btn btn-outline-primary" href="{% url 'password_reset' %}">Reset your password</a> {% endif %}
     </p>
 
     <h2>Authorized tokens</h2>
     <p>
-      Here you can show a list of currently active token and you can also revoke your tokens!<br />
+      Here you can show a list of currently active tokens and you can also revoke your tokens!<br />
       <a href="{% url 'oauth2_provider:authorized-token-list' %}">Show authorized tokens</a>
     </p>
 
@@ -29,9 +36,7 @@
         <a href="{% url 'oauth2_provider:list' %}">Show your apps</a>
     </p>
 
-    {# Assumes you setup the password_reset view in your URLconf #}
-    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-
-    {% endblock %}
+    
   </div>
 </div>
+{% endblock %}
