@@ -13,7 +13,7 @@ class CustomOAuth2Validator(OAuth2Validator):
             "preferred_username": request.user.username,
         }
 
-        if 'email' in scopes:
+        if 'email' in scopes and request.user.email:
             claims["email"] = request.user.email
             claims["email_verified"] = True
 
