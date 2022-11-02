@@ -188,7 +188,7 @@ OAUTH2_PROVIDER = {
         # Scope needed for OIDC
         'openid': 'Use OpenID Connect.',
         # My scopes
-        'membership': 'See you membership status and your crew name.',
+        'membership': 'See your membership status and your crew name.',
         'email': 'See your e-mail address (e.g. {crew-name}@c-base.org).',
         'groups': 'See if your LDAP groups (e.g. "soundlab", "c-lab", "cey").',
         'realname': 'See your real name (CN).',
