@@ -96,25 +96,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.admin",
 
-    # Pinax user accounts apps
-    # "account",
-    # "pinax_theme_bootstrap_account",
-    # "django_forms_bootstrap",
-    # TODO: bootstrap/field.html template collides with crispy-forms
-
-    # Top utilities for assets management, db migrations, api and more
-    # "compressor",
-    # "crispy_forms",
-    # "django_extensions",
-    # "infinite_pagination",
-    # #"imagekit",
-    # "rest_framework",
-    # "south",
-    # "storages",
     "corsheaders",
     # Project apps
     "c_base_oauth2.apps.c_base_auth.apps.CBaseAuthConfig",
     "c_base_oauth2.apps.users.apps.UsersConfig",
+    # Load django-oauth-toolkit
     "oauth2_provider",
 ]
 
