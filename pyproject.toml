@@ -1,26 +1,26 @@
-[tool.poetry]
+[project]
 name = "c-base-oauth2"
-version = "0.1.0"
+version = "1.0.0"
 description = "A OAuth2 service to authenticate c-base members and allow them access to c-base-owned services"
 authors = ["Uwe Kamper <uk@c-base.org>"]
+requires-python = ">=3.10"
 
-[tool.poetry.dependencies]
-python = "^3.6"
-Django = "^3.1.3"
-django-oauth-toolkit = "1.5.0"
-psycopg2-binary = "^2.8.6"
-django-environ = "^0.4.5"
-django-cors-middleware = "^1.5.0"
-django-auth-ldap = "^2.2.0"
-gunicorn = "^20.0.4"
-whitenoise = "^5.3.0"
+dependencies = [
+    "Django>=5.2.1",
+    "django-oauth-toolkit>=3.2.0",
+    "psycopg2-binary",
+    "django-environ",
+    "django-cors-headers>=4.9.0",
+    "django-auth-ldap",
+    "gunicorn>=25.0.3",
+    "whitenoise>=6.11.0",
+]
 
-[tool.poetry.dev-dependencies]
-pytest = "^6.1.2"
-pytest-django = "^4.1.0"
-flake8 = "^3.8.4"
-django-debug-toolbar = "^3.1.1"
+[dependency-groups]
+dev = [
+    "pytest>=6.1.2",
+    "pytest-django>=4.1.0",
+    "flake8>=3.8.4",
+    "django-debug-toolbar>=3.1.1",
+]
 
-[build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
