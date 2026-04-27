@@ -14,8 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.urls import include
+from django.views.generic import TemplateView
+import oauth2_provider.views
+
 from .apps.users.views import UserProfileAPIView
 from .apps.users.views import UserProfileView
 from .apps.users.views import CustomAuthorizationView
@@ -29,5 +32,11 @@ urlpatterns = [
     path('oauth/accounts/alien_login/', AlienLoginView.as_view(), name="alien_login"),
     path('oauth/accounts/', include('django.contrib.auth.urls')),
     path('oauth/authorize/', CustomAuthorizationView.as_view(), name="custom_authorize"),
-    path('oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    re_path(
+        r"^oauth/\.well-known/openid-configuration$",
+        oauth2_provider.views.ConnectDiscoveryInfoView.as_view(),
+        name="oidc-connect-discovery-info",
+    ),
+    path('oauth/', include('oauth2_provider.urls',
+                           namespace='oauth2_provider')),
 ]
