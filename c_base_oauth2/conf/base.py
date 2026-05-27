@@ -183,6 +183,9 @@ OAUTH2_PROVIDER = {
     # from a user directly accessing a protected resource
     # instead of a third-party service.
     # 'DEFAULT_SCOPES': ['membership', 'groups', 'email', 'realname'],
+    
+    # This is necessary or things will stop working - I do not know why this needs to be disabled.
+    "PKCE_REQUIRED": False,
 }
 
 from .common.logs import LOGGING   # noqa: F401, E402
